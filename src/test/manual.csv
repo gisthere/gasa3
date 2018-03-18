@@ -1,0 +1,8 @@
+Line,Large,No,101,NA,NA,NA,Yes
+Isosceles,Large,No,25,25,76,NA,No
+Scalene,Large,No,25,26,50,NA,No
+Isosceles,Small,Yes,30,30,40,NA,Yes
+Scalene,Small,No,25,26,49,NA,No
+Line,Small,Yes,100,NA,NA,NA,Yes
+Rectangle,Small,Yes,20,20,30,30,Yes
+Square,Small,No,25,25,25,25,Yes
