@@ -76,9 +76,14 @@ public class ShapeClassifier {
             isSizeGuessCorrect = false;
         }
 
-        if (0 == (calcPerim % 2) && evenOddGuess.equals("Yes")) {
+        int productOfParams = 1;
+        for (int p : parameters) {
+            productOfParams *= p;
+        }
+
+        if (0 == (productOfParams % 2) && evenOddGuess.equals("Yes")) {
             isEvenOddCorrect = true;
-        } else if (0 != (calcPerim % 2) && evenOddGuess.equals("No")) {
+        } else if (0 != (productOfParams % 2) && evenOddGuess.equals("No")) {
             isEvenOddCorrect = true;
         } else {
             isEvenOddCorrect = false;
