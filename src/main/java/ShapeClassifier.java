@@ -45,12 +45,12 @@ public class ShapeClassifier {
                 break;
             case 3:
                 shapeGuessResult = classify3Parameters(parameters[0], parameters[1], parameters[2]);
-                calcPerim = calculateTrianglePerimeter(parameters[1], parameters[1], parameters[2]);
+                calcPerim = calculateTrianglePerimeter(parameters[0], parameters[1], parameters[2]);
                 break;
             case 4:
                 shapeGuessResult = classify4Parameters(parameters[0], parameters[1], parameters[2], parameters[3]);
                 if (shapeGuessResult.equals("Rectangle")) {
-                    calcPerim = calculateRectanglePerimeter(parameters[0], parameters[3], parameters[2], parameters[3]);
+                    calcPerim = calculateRectanglePerimeter(parameters[0], parameters[1], parameters[2], parameters[3]);
                 } else {
                     calcPerim = calculateRectanglePerimeter(parameters[0], parameters[1], parameters[2], parameters[3]);
                 }
