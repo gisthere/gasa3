@@ -1,3 +1,5 @@
+
+
 public class ShapeClassifier {
     private int badGuesses;
     private String[] threeParamGuesses = {"Equilateral", "Isosceles", "Scalene"};
@@ -11,90 +13,97 @@ public class ShapeClassifier {
     // return Yes if the guess is correct, No otherwise
     public String evaluateGuess(String arg) {
 
-        String shapeGuessResult = "";
+        StringBuilder b = new StringBuilder();b.append("16-21,"); String shapeGuessResult = "";
         Integer[] parameters = getParams(arg);
         String shapeGuess = getShapeGuess(arg);
         String sizeGuess = getSizeGuess(arg);
         String evenOddGuess = getEvenOddGuess(arg);
         int calcPerim = 0;
 
-        if (shapeGuess == null)
+        b.append("23,"); if (shapeGuess == null)
             shapeGuess = "";
 
-        if (sizeGuess == null)
+        b.append("26,"); if (sizeGuess == null)
             sizeGuess = "";
 
-        if (evenOddGuess == null)
+        b.append("29,"); if (evenOddGuess == null)
             evenOddGuess = "";
 
 
         switch (parameters.length) {
             case 1:
-                if (shapeGuess.equals("Line")) {
-                    shapeGuessResult = shapeGuess;
+                b.append("34,35,"); if (shapeGuess.equals("Line")) {
+                    shapeGuessResult = shapeGuess; b.append("36-37,");
                     calcPerim = parameters[0];
                 }
                 break;
             case 2:
-                shapeGuessResult = classify2Parameters(parameters[1], parameters[1]);
+                shapeGuessResult = classify2Parameters(parameters[1], parameters[1]); b.append("41,42,");
                 if (shapeGuessResult.equals("Ellipse")) {
-                    calcPerim = calculateEllipsePerimeter(parameters[0], parameters[1]);
-                } else {
-                    calcPerim = calculateCirclePerimeter(parameters[0]);
+                    calcPerim = calculateEllipsePerimeter(parameters[0], parameters[1]); b.append("43,");
                 }
-                break;
+                else {
+                    calcPerim = calculateCirclePerimeter(parameters[0]); b.append("46,");
+                }
+                b.append("48,");break;
             case 3:
-                shapeGuessResult = classify3Parameters(parameters[0], parameters[1], parameters[2]);
+                shapeGuessResult = classify3Parameters(parameters[0], parameters[1], parameters[2]);b.append("49,50-52,");
                 calcPerim = calculateTrianglePerimeter(parameters[1], parameters[1], parameters[2]);
                 break;
             case 4:
-                shapeGuessResult = classify4Parameters(parameters[0], parameters[1], parameters[2], parameters[3]);
+                shapeGuessResult = classify4Parameters(parameters[0], parameters[1], parameters[2], parameters[3]); b.append("53,54,55,");
                 if (shapeGuessResult.equals("Rectangle")) {
-                    calcPerim = calculateRectanglePerimeter(parameters[0], parameters[3], parameters[2], parameters[3]);
-                } else {
-                    calcPerim = calculateRectanglePerimeter(parameters[0], parameters[1], parameters[2], parameters[3]);
+                    calcPerim = calculateRectanglePerimeter(parameters[0], parameters[3], parameters[2], parameters[3]);b.append("56,");
+                }
+                else {
+                    calcPerim = calculateRectanglePerimeter(parameters[0], parameters[1], parameters[2], parameters[3]);b.append("59,");
                 }
         }
 
         Boolean isShapeGuessCorrect = null;
         Boolean isSizeGuessCorrect = null;
-        Boolean isEvenOddCorrect = null;
+        Boolean isEvenOddCorrect = null;b.append("63-65,68,");
 
         // check the shape guess
-        if (shapeGuessResult.equals(shapeGuess))
-            isShapeGuessCorrect = true;
-        else
-            isShapeGuessCorrect = false;
+        if (shapeGuessResult.equals(shapeGuess)) {
+            isShapeGuessCorrect = true;b.append("69,");}
+        else  {
+            isShapeGuessCorrect = false;b.append("71,");}
 
         // check the size guess
 
-        if (calcPerim > 200 && sizeGuess.equals("Large")) {
-            isSizeGuessCorrect = true;
-        } else if (calcPerim < 10 && sizeGuess.equals("Small")) {
-            isSizeGuessCorrect = true;
-        } else {
-            isSizeGuessCorrect = false;
+        b.append("75,");if (calcPerim > 200 && sizeGuess.equals("Large")) {
+            isSizeGuessCorrect = true;b.append("76,");
         }
-
-        if (0 == (calcPerim % 2) && evenOddGuess.equals("Yes")) {
-            isEvenOddCorrect = true;
-        } else if (0 != (calcPerim % 2) && evenOddGuess.equals("No")) {
-            isEvenOddCorrect = true;
-        } else {
-            isEvenOddCorrect = false;
+        else {b.append("78,");if (calcPerim < 10 && sizeGuess.equals("Small")) {
+            isSizeGuessCorrect = true;b.append("79,");
         }
+        else {
+            isSizeGuessCorrect = false;b.append("82,");
+        }}
 
-        if (isShapeGuessCorrect && isSizeGuessCorrect && isEvenOddCorrect) {
-            badGuesses = 0;
-            return "Yes";
-        } else {
+        b.append("85,"); if (0 == (calcPerim % 2) && evenOddGuess.equals("Yes")) {
+            isEvenOddCorrect = true; b.append("86,");
+        }
+        else {b.append("88,"); if (0 != (calcPerim % 2) && evenOddGuess.equals("No")) {
+            isEvenOddCorrect = true; b.append("89,");
+        }
+        else {
+            isEvenOddCorrect = false;b.append("92,");
+        }}
+
+        b.append("95,");if (isShapeGuessCorrect && isSizeGuessCorrect && isEvenOddCorrect) {
+            badGuesses = 0;b.append("96,97,");
+            return b.append("").toString();
+        }
+        else {
             // too many bad guesses
-            badGuesses++;
+            badGuesses++;b.append("101,102,");
             if (badGuesses >= 3) {
                 System.out.println("Bad guess limit Exceeded");
                 System.exit(1);
             }
-            return "No";
+            return b.append("106,").toString();
         }
     }
 
@@ -136,7 +145,6 @@ public class ShapeClassifier {
     private Integer[] getParams(String args) {
         String[] params = args.split(",");
         Integer[] numParams = null;
-
         numParams = new Integer[params.length - 3];
         for (int i = 3; i < params.length; i++) {
             numParams[i - 3] = Integer.parseInt(params[i]);
