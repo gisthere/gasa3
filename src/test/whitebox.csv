@@ -1,0 +1,12 @@
+Rectangle,Large,Yes,50,50,60,60,NA,Yes
+Line,Large,Yes,202,NA,NA,NA,NA,Yes
+Rectangle,Large,Yes,202,NA,NA,NA,NA,No
+Ellipse,Large,Yes,100,102,NA,NA,NA,Yes
+Circle,Large,Yes,102,102,NA,NA,NA,Yes
+Equilateral,Large,Yes,100,100,100,NA,NA,Yes
+Line,Large,Yes,100,100,100,100,100,No
+Square,Large,Yes,100,100,100,100,NA,Yes
+Rectangle,Large,Yes,60,60,60,60,NA,No
+Rectangle,Small,Yes,50,50,60,60,NA,No
+Rectangle,Small,Yes,1,1,2,2,NA,Yes
+Rectangle,Small,No,1,1,2,2,NA,No
