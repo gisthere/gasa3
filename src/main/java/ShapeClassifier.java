@@ -27,7 +27,7 @@ public class ShapeClassifier {
             sizeGuess = "";
 
         b.append("29,"); if (evenOddGuess == null)
-            evenOddGuess = "";
+            evenOddGuess = "";b.append("33,");
 
 
         switch (parameters.length) {
@@ -36,9 +36,9 @@ public class ShapeClassifier {
                     shapeGuessResult = shapeGuess; b.append("36-37,");
                     calcPerim = parameters[0];
                 }
-                break;
+                b.append("39,");break;
             case 2:
-                shapeGuessResult = classify2Parameters(parameters[1], parameters[1]); b.append("41,42,");
+                shapeGuessResult = classify2Parameters(parameters[1], parameters[1]); b.append("34,40,41,42,");
                 if (shapeGuessResult.equals("Ellipse")) {
                     calcPerim = calculateEllipsePerimeter(parameters[0], parameters[1]); b.append("43,");
                 }
@@ -47,11 +47,11 @@ public class ShapeClassifier {
                 }
                 b.append("48,");break;
             case 3:
-                shapeGuessResult = classify3Parameters(parameters[0], parameters[1], parameters[2]);b.append("49,50-52,");
+                shapeGuessResult = classify3Parameters(parameters[0], parameters[1], parameters[2]);b.append("34,40,49,50-52,");
                 calcPerim = calculateTrianglePerimeter(parameters[1], parameters[1], parameters[2]);
                 break;
             case 4:
-                shapeGuessResult = classify4Parameters(parameters[0], parameters[1], parameters[2], parameters[3]); b.append("53,54,55,");
+                shapeGuessResult = classify4Parameters(parameters[0], parameters[1], parameters[2], parameters[3]); b.append("34,40,49,53,54,55,");
                 if (shapeGuessResult.equals("Rectangle")) {
                     calcPerim = calculateRectanglePerimeter(parameters[0], parameters[3], parameters[2], parameters[3]);b.append("56,");
                 }
@@ -108,7 +108,7 @@ public class ShapeClassifier {
     }
 
     // P = 2 * PI *r
-    private int calculateCirclePerimeter(int r) {
+    public int calculateCirclePerimeter(int r) {
         return (int) (2 * Math.PI * r);
     }
 
@@ -136,7 +136,7 @@ public class ShapeClassifier {
 
     // This is an approximation
     // PI(3(a+b) - sqrt((3a+b)(a+3b))
-    private int calculateEllipsePerimeter(int a, int b) {
+    public int calculateEllipsePerimeter(int a, int b) {
         double da = a, db = b;
         return (int) ((int) Math.PI * (3 * (da + db) - Math.sqrt((3 * da + db) * (da + 3 * db))));
     }
